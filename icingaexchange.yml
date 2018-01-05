@@ -1,0 +1,18 @@
+name: check_ovpn_users
+description: "file:///README.md"
+url: "https://github.com/stdevel/check_ovpn_users"
+tags: IPFire, OpenVPN, VPN
+vendor: Linux
+target: Operating System
+type: Plugin
+license: gplv3
+releases: 
+  - 
+    name: 0.5.0
+    description: "0.5.0 Release"
+    files: 
+      - 
+        name: check_ovpn_users.py
+        url: "file:///check_ovpn_users.py"
+        description: "Release 0.5.0"
+        checksum: 1456721c4954bbff6845a88d0e74c7ad
