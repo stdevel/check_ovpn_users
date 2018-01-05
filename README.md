@@ -44,19 +44,21 @@ To install the plugin, move the Python script into the appropriate directory and
 # Configuration
 Inside Nagios / Icinga you will need to configure a check, e.g. for Icinga2:
 ```
-#check_nrpe_apcaccess
-define command{
-    command_name        check_nrpe_apcaccess
-    command_line        $USER1$/check_nrpe -H $HOSTADDRESS$ -c check_apcaccess -a $ARG1$
+apply Service "DIAG: OpenVPN users" {
+  import "generic-service"
+  check_command = "check_ovpn_users"
+  vars.openvpn_perfdata = true
+  assign where host.vars.os == "Linux" && host.vars.app == "router"
+  ignore where host.vars.noagent
 }
 ```
 
 For agentless systems (*e.g. IPFire/IPCop*), utilize the ``check_by_ssh`` command:
 ```
-apply Service "DIAG: Updates" {
+apply Service "DIAG: OpenVPN users" {
   import "generic-service"
   check_command = "by_ssh"
-  vars.by_ssh_command = [ "/opt/check_pakfire.py", "-P" ]
+  vars.by_ssh_command = [ "/opt/check_ovpn_users.py", "-P" ]
   vars.by_ssh_port = host.vars.ssh_port
   vars.by_ssh_logname = "icinga"
   assign where host.vars.os == "Linux" && host.vars.app == "router"
