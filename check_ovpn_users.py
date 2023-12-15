@@ -36,7 +36,7 @@ def check_users():
 	#get _all_ the users
 	for line in log:
 		#find IP at the beginning of line (other IPs are crap)
-		ips = re.findall("^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}", line)
+		ips = re.findall("^CLIENT_LIST,\w*,\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}", line)
 		#add if IP found
 		if len(ips) > 0: matches.append(ips[0])
 	LOGGER.debug("Found the following clients: {0}".format(",".join(matches)))
